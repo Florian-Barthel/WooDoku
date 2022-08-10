@@ -9,6 +9,7 @@ class Env:
         self.last_position_x = 0
         self.last_position_y = 0
         self.game_score = 0
+        self.board_diff = np.zeros([9, 9], dtype=np.int)
 
     def place_piece(self, piece: np.ndarray, x: int, y: int):
         """Places a given piece at coordinates x and y
@@ -29,7 +30,7 @@ class Env:
             self.last_position_y = y
             self.game_score += np.sum(piece)
 
-    def calculate_reward(self) -> int:
+    def calculate_reward(self):
         game_board_remove = self.game_board.copy()
         current_reward = 0
         for i in range(3):
@@ -48,6 +49,7 @@ class Env:
                 current_reward += 1
                 self.game_score += 9
                 game_board_remove.T[i] = 0
+        self.board_diff = self.game_board - game_board_remove
         self.game_board = game_board_remove
         self.total_reward += current_reward
         return current_reward

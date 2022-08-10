@@ -27,6 +27,7 @@ def draw_board(env: environment.Env, iteration, last_piece: np.ndarray, is_last=
                 print(' ', end='  ')
         print()
     print()
+
     for i in range(env.game_board.shape[0]):
         if i % 3 == 0 and i > 0:
             print('═'*30)
@@ -39,11 +40,16 @@ def draw_board(env: environment.Env, iteration, last_piece: np.ndarray, is_last=
                     if last_piece[i - env.last_position_y, j - env.last_position_x] > 0:
                         print(bcolors.OKCYAN + '■' + bcolors.ENDC, end='  ')
                     else:
-                        if env.game_board[i, j] > 0:
+                        if env.board_diff[i, j] != 0:
+                            print(bcolors.FAIL + '■' + bcolors.ENDC, end='  ')
+                        elif env.game_board[i, j] > 0:
                             print('■', end='  ')
                         else:
                             print('☐', end='  ')
                     continue
+            if env.board_diff[i, j] != 0:
+                print(bcolors.FAIL + '■' + bcolors.ENDC, end='  ')
+                continue
             if env.game_board[i, j] > 0:
                 print('■', end='  ')
             else:
