@@ -16,7 +16,7 @@ class bcolors:
 
 
 def draw_board(env: environment.Env, iteration, last_piece: np.ndarray, is_last=False):
-    print('            WOODOKU')
+    print('-----------WOODOKU-----------')
     print('Iteration {}, Score: {}'.format(iteration, env.game_score))
     print('Current piece:')
     for i in range(last_piece.shape[0]):
