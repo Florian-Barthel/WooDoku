@@ -30,7 +30,7 @@ def draw_board(env: environment.Env, iteration, last_piece: np.ndarray, is_last=
 
     for i in range(env.game_board.shape[0]):
         if i % 3 == 0 and i > 0:
-            print('═'*30)
+            print('═════════╬══════════╬══════════')
         for j in range(env.game_board.shape[1]):
             if j % 3 == 0 and j > 0:
                 print('║ ', end='')
