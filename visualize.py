@@ -26,12 +26,13 @@ def draw_board(env: environment.Env, iteration, last_piece: np.ndarray, is_last=
             else:
                 print(' ', end='  ')
         print()
+    print()
     for i in range(env.game_board.shape[0]):
-        if i % 3 == 0:
-            print()
+        if i % 3 == 0 and i > 0:
+            print('═'*30)
         for j in range(env.game_board.shape[1]):
-            if j % 3 == 0:
-                print('  ', end='')
+            if j % 3 == 0 and j > 0:
+                print('║ ', end='')
 
             if i in np.arange(last_piece.shape[0]) + env.last_position_y and not is_last:
                 if j in np.arange(last_piece.shape[1]) + env.last_position_x:
